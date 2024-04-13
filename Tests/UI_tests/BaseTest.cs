@@ -2,7 +2,7 @@ using Diplom_Pokrovskaya.Core;
 using Diplom_Pokrovskaya.Helpers.Configuration;
 using OpenQA.Selenium;
 
-namespace Diplom_Pokrovskaya.Tests
+namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
     [Parallelizable(scope: ParallelScope.All)]
     [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]

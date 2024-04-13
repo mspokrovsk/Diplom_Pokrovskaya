@@ -13,7 +13,25 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             LoginPage loginPage = new LoginPage(Driver);
             ProjectsPage projectsPage = loginPage.SuccessfulLogin(Configurator.AppSettings.Username, Configurator.AppSettings.Password);
 
-            Assert.That(projectsPage.IsPageOpened(), "”пс, элемент Projects не найден");
+            Assert.That(projectsPage.IsPageOpened());
+        }
+
+        [Test]
+        public void LoginWithErrorPassword()//не выбрасываетс€ исключение
+        {
+            LoginPage loginPage = new LoginPage(Driver);
+            ProjectsPage projectsPage = loginPage.SuccessfulLogin(Configurator.AppSettings.Username, "Yt,tcysq");
+
+            Assert.That(projectsPage.IsPageOpened(), "Failed to login with error password");
+        }
+
+        [Test]
+        public void LoginWithErrorUsername()
+        {
+            LoginPage loginPage = new LoginPage(Driver);
+            loginPage.IncorrectLogin("mspokrovsk@mts", Configurator.AppSettings.Password);
+            loginPage.TextError.Text.Trim();
+            Is.EqualTo("These credentials do not match our records or the user account is not allowed to log in");
         }
     }
 }

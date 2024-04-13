@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,9 @@ namespace Diplom_Pokrovskaya.Pages
 
         // Описание элементов
         private static By pageTitle = By.ClassName("page-title__title");
+        private static By addProjectButton = By.CssSelector("[data-action='click->home--index#doAddProject']");
+        private static By hoverElement = By.CssSelector("[data-content='mspokrovsk']");
+        
 
         // Инициализация класса
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
@@ -23,9 +27,11 @@ namespace Diplom_Pokrovskaya.Pages
 
         // Методы
         public IWebElement PageTitle => WaitsHelper.WaitForExists(pageTitle);
+        public IWebElement AddProjectButton => WaitsHelper.WaitForExists(addProjectButton);
+        public IWebElement HoverElement => WaitsHelper.WaitForExists(hoverElement);
 
         // Комплексные
-       protected override string GetEndpoint()
+        protected override string GetEndpoint()
         {
             return END_POINT;
         }
@@ -38,6 +44,25 @@ namespace Diplom_Pokrovskaya.Pages
             }
             catch (NoSuchElementException)
             {
+                return false;
+            }
+        }
+
+        public void HoverOverHoverElement()
+        {
+            Actions action = new Actions(Driver);
+            action.MoveToElement(HoverElement).Perform();
+        }
+
+        public bool IsTooltipTextCorrect(string tooltipText, string expectedText)
+        {
+            if (tooltipText == expectedText)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Tooltip text is incorrect. Expected: " + expectedText + ", actual: " + tooltipText);
                 return false;
             }
         }

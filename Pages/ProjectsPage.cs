@@ -21,7 +21,7 @@ namespace Diplom_Pokrovskaya.Pages
         private static By selectFileButton = By.CssSelector("[data-action='click->doSelectAvatar']");
         private static By fileInput = By.CssSelector("[data-target='fileInput']");
         private static By avatarJpg = By.XPath("//img[starts-with(@src,'https://mspokrovsk.testmo.net/attachments/view/')]");
-
+        private static By summary = By.CssSelector("[data-target=\"note behavior--maxlength-counter.control\"]");
         // Инициализация класса
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
@@ -35,6 +35,7 @@ namespace Diplom_Pokrovskaya.Pages
         public IWebElement SelectFileButton => WaitsHelper.WaitForExists(selectFileButton);
         public IWebElement FileInput => WaitsHelper.WaitForExists(fileInput);
         public IWebElement AvatarJpg => WaitsHelper.WaitForExists(avatarJpg);
+        public IWebElement Summary => WaitsHelper.WaitForExists(summary);
         // Комплексные
         protected override string GetEndpoint()
         {
@@ -92,6 +93,19 @@ namespace Diplom_Pokrovskaya.Pages
             return AvatarJpg.Displayed;
         }
 
+        public string GenerateRandomLetters(int length)
+        {
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            Random random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        public void AddRandomLetters()
+        {
+            string randomLetters = GenerateRandomLetters(81);
+            Summary.SendKeys(randomLetters);
+        }
 
     }
 }

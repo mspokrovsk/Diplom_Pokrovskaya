@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 
 namespace Diplom_Pokrovskaya.Pages
 {
-    internal abstract class PageBase
+    public abstract class PageBase
     {
         protected IWebDriver Driver { get; private set; }
         protected WaitsHelper WaitsHelper { get; private set; }

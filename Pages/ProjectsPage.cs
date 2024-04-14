@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Diplom_Pokrovskaya.Pages
 {
-    internal class ProjectsPage : PageBase
+    public class ProjectsPage : PageBase
     {
         private static string END_POINT = "";
 

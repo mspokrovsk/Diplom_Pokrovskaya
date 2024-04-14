@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Diplom_Pokrovskaya.Pages
 {
-    internal class LoginPage : PageBase
+    public class LoginPage : PageBase
     {
         private static string END_POINT = "auth/login";
 
@@ -30,21 +30,6 @@ namespace Diplom_Pokrovskaya.Pages
         public IWebElement TextError => WaitsHelper.WaitForExists(textError);
 
         // Комплексные
-        public ProjectsPage SuccessfulLogin(string username, string password)
-        {
-            UsernameField.SendKeys(username);
-            PasswordField.SendKeys(password);
-            LoginButton.Click();
-            return new ProjectsPage(Driver, true);
-        }
-        public LoginPage IncorrectLogin(string username, string password)
-        {
-            UsernameField.SendKeys(username);
-            PasswordField.SendKeys(password);
-            LoginButton.Click();
-            return this;
-        }
-
         protected override string GetEndpoint()
         {
             return END_POINT;
@@ -61,5 +46,8 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
+        public void ClickLoginInButton() => LoginButton.Click();
+
+        public string GetErrorLabelText() => TextError.Text.Trim();
     }
 }

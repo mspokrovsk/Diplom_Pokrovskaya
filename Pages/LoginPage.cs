@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Diplom_Pokrovskaya.Elements;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,8 @@ namespace Diplom_Pokrovskaya.Pages
         // Методы
         public IWebElement UsernameField => WaitsHelper.WaitForExists(userEmail);
         public IWebElement PasswordField => WaitsHelper.WaitForExists(passwordField);
-        public IWebElement LoginButton => WaitsHelper.WaitForExists(loginButton);
+        //public IWebElement LoginButton => WaitsHelper.WaitForExists(loginButton);
+        public Button LoginButton => new Button(Driver, loginButton);
         public IWebElement TextError => WaitsHelper.WaitForExists(textError);
 
         // Комплексные

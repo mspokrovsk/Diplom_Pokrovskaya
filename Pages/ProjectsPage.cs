@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Diplom_Pokrovskaya.Elements;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,10 @@ namespace Diplom_Pokrovskaya.Pages
         private static By fileInput = By.CssSelector("[data-target='fileInput']");
         private static By avatarJpg = By.XPath("//img[starts-with(@src,'https://mspokrovsk.testmo.net/attachments/view/')]");
         private static By summary = By.CssSelector("[data-target=\"note behavior--maxlength-counter.control\"]");
+        private static By projectName = By.CssSelector("[data-target='name']");
+        private static By addDemoProject = By.CssSelector("[data-target='addDemoProject']");
+        private static By submitButton = By.CssSelector("[data-target='submitButton']");
+        private static By nameProject = By.XPath("//a[starts-with(@href,'https://mspokrovsk.testmo.net/projects/view/')]");
         // Инициализация класса
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
@@ -29,14 +34,29 @@ namespace Diplom_Pokrovskaya.Pages
         }
         // Методы
         public IWebElement PageTitle => WaitsHelper.WaitForExists(pageTitle);
-        public IWebElement AddProjectButton => WaitsHelper.WaitForExists(addProjectButton);
+       // public IWebElement AddProjectButton => WaitsHelper.WaitForExists(addProjectButton);
+        public Button AddProjectButton => new Button(Driver, addProjectButton);
         public IWebElement HoverElement => WaitsHelper.WaitForExists(hoverElement);
         public IWebElement ProjectDialog => WaitsHelper.WaitForExists(projectDialog);
         public IWebElement SelectFileButton => WaitsHelper.WaitForExists(selectFileButton);
         public IWebElement FileInput => WaitsHelper.WaitForExists(fileInput);
         public IWebElement AvatarJpg => WaitsHelper.WaitForExists(avatarJpg);
         public IWebElement Summary => WaitsHelper.WaitForExists(summary);
+        public IWebElement ProjectName => WaitsHelper.WaitForExists(projectName);
+        public Checkbox AddDemoProject => new Checkbox(Driver, addDemoProject);
+        public Button SubmitButton => new Button(Driver, submitButton);
+        public IWebElement NameProject => WaitsHelper.WaitForExists(nameProject);
         // Комплексные
+        public void ClickAddToProject() => AddProjectButton.Click();
+
+        //public void ClickSubmitButton() => SubmitButton.Click();
+        public ProjectsPage ClickSubmitButton()
+        {
+            SubmitButton.Click();
+            Thread.Sleep(3000);
+            return new ProjectsPage(Driver, true);
+        }
+
         protected override string GetEndpoint()
         {
             return END_POINT;
@@ -72,8 +92,6 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
-
-        public void ClickAddToProject() => AddProjectButton.Click();
 
         public bool DialogWindowOpened()
         {

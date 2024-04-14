@@ -3,6 +3,7 @@ using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,20 +17,24 @@ namespace Diplom_Pokrovskaya.Pages
         private static By pageTitle = By.ClassName("page-title__title");
         private static By addProjectButton = By.CssSelector("[data-action='click->home--index#doAddProject']");
         private static By hoverElement = By.CssSelector("[data-content='mspokrovsk']");
-        
+        private static By projectDialog = By.ClassName("dialog__border");
+        private static By selectFileButton = By.CssSelector("[data-action='click->doSelectAvatar']");
+        private static By fileInput = By.CssSelector("[data-target='fileInput']");
+        private static By avatarJpg = By.XPath("//img[starts-with(@src,'https://mspokrovsk.testmo.net/attachments/view/')]");
 
         // Инициализация класса
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
 
         }
-
-
         // Методы
         public IWebElement PageTitle => WaitsHelper.WaitForExists(pageTitle);
         public IWebElement AddProjectButton => WaitsHelper.WaitForExists(addProjectButton);
         public IWebElement HoverElement => WaitsHelper.WaitForExists(hoverElement);
-
+        public IWebElement ProjectDialog => WaitsHelper.WaitForExists(projectDialog);
+        public IWebElement SelectFileButton => WaitsHelper.WaitForExists(selectFileButton);
+        public IWebElement FileInput => WaitsHelper.WaitForExists(fileInput);
+        public IWebElement AvatarJpg => WaitsHelper.WaitForExists(avatarJpg);
         // Комплексные
         protected override string GetEndpoint()
         {
@@ -66,5 +71,27 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
+
+        public void ClickAddToProject() => AddProjectButton.Click();
+
+        public bool DialogWindowOpened()
+        {
+            return ProjectDialog.Displayed;
+        }
+
+        public void ClickAddFile()
+        {
+            SelectFileButton.Click();
+            string assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string filePath = Path.Combine(assemblyPath, "Resource", "Avatar.jpg");
+            FileInput.SendKeys(filePath);
+        }
+
+        public bool AvatarUpload()
+        {
+            return AvatarJpg.Displayed;
+        }
+
+
     }
 }

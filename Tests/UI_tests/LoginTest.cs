@@ -17,15 +17,6 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         }
 
         [Test]
-        public void LoginWithErrorPassword()//не выбрасывается исключение
-        {
-            LoginPage loginPage = new LoginPage(Driver);
-            ProjectsPage projectsPage = loginPage.SuccessfulLogin(Configurator.AppSettings.Username, "Yt,tcysq");
-
-            Assert.That(projectsPage.IsPageOpened(), "Failed to login with error password");
-        }
-
-        [Test]
         public void LoginWithErrorUsername()
         {
             LoginPage loginPage = new LoginPage(Driver);

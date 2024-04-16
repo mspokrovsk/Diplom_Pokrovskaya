@@ -4,12 +4,19 @@ using OpenQA.Selenium;
 using Diplom_Pokrovskaya.Pages;
 using OpenQA.Selenium.Interactions;
 using Diplom_Pokrovskaya.Steps;
+using Allure.NUnit.Attributes;
+using Allure.Net.Commons;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
+    [AllureEpic("Web Interface")]
+    [AllureFeature("Login feature", "AddProject feature")]
     public class DialogWindowTest : BaseTest
     {
-        [Test]
+        [Test(Description = "ѕроверка отображени€ диалогового окна")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("Story4")]
         public void TestDialogWindow()
         {
             UserSteps userSteps = new UserSteps(Driver);

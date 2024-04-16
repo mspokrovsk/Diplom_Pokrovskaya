@@ -3,12 +3,20 @@ using Diplom_Pokrovskaya.Helpers.Configuration;
 using OpenQA.Selenium;
 using Diplom_Pokrovskaya.Pages;
 using Diplom_Pokrovskaya.Steps;
+using Allure.NUnit.Attributes;
+using Allure.Net.Commons;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
+    [AllureEpic("Web Interface")]
+    [AllureFeature("Login feature")]
+
     public class LoginTest : BaseTest
     {
-        [Test]
+        [Test(Description = "Проверка перехода на главную страницу после логина с корректными данными")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("Story1")]
         public void LoginWithStandardUser()
         {
             UserSteps userSteps = new UserSteps(Driver);
@@ -17,7 +25,10 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             Assert.That(projectsPage.IsPageOpened);
         }
 
-        [Test]
+        [Test(Description = "Проверка отображения ошибки These credentials do not match our records or the user account is not allowed to log in. после логина с некорректным email")]
+        [AllureSeverity(SeverityLevel.blocker)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("Story1")]
         public void LoginWithErrorUsername()
         {
             Assert.That(

@@ -16,7 +16,7 @@ namespace Diplom_Pokrovskaya.Pages
 
         // Описание элементов
         private static By pageTitle = By.ClassName("page-title__title");
-        private static By addProjectButton = By.CssSelector("[data-action='click->home--index#doAddProject']");
+        private static By addProjectButton = By.CssSelector("[data-target='home--index.addButton']");
         private static By hoverElement = By.CssSelector("[data-content='mspokrovsk']");
         private static By projectDialog = By.ClassName("dialog__border");
         private static By selectFileButton = By.CssSelector("[data-action='click->doSelectAvatar']");
@@ -27,6 +27,7 @@ namespace Diplom_Pokrovskaya.Pages
         private static By addDemoProject = By.CssSelector("[data-target='addDemoProject']");
         private static By submitButton = By.CssSelector("[data-target='submitButton']");
         private static By nameProject = By.XPath("//a[starts-with(@href,'https://mspokrovsk.testmo.net/projects/view/')]");
+        private static By admin = By.CssSelector("[data-content='Admin']");
         // Инициализация класса
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
@@ -46,6 +47,7 @@ namespace Diplom_Pokrovskaya.Pages
         public Checkbox AddDemoProject => new Checkbox(Driver, addDemoProject);
         public Button SubmitButton => new Button(Driver, submitButton);
         public IWebElement NameProject => WaitsHelper.WaitForExists(nameProject);
+        public Button Admin => new Button(Driver, admin);
         // Комплексные
         public void ClickAddToProject() => AddProjectButton.Click();
 
@@ -57,7 +59,12 @@ namespace Diplom_Pokrovskaya.Pages
             return new ProjectsPage(Driver, true);
         }
 
-        protected override string GetEndpoint()
+        public AdminPage ClickAdmin()
+        {
+            Admin.Click();
+            return new AdminPage(Driver, true);
+        }
+    protected override string GetEndpoint()
         {
             return END_POINT;
         }
@@ -123,6 +130,23 @@ namespace Diplom_Pokrovskaya.Pages
         {
             string randomLetters = GenerateRandomLetters(81);
             Summary.SendKeys(randomLetters);
+        }
+
+        public bool IsNameProjectAbsent(string text)
+        {
+            return !IsElementPresent(By.XPath($"//div[contains(text(), '{text}')]"));
+        }
+        public bool IsElementPresent(By locator)
+        {
+            try
+            {
+                Driver.FindElement(locator);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
         }
 
     }

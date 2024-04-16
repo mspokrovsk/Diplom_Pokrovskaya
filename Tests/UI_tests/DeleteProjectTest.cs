@@ -6,18 +6,19 @@ using Diplom_Pokrovskaya.Pages;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
-    public class AddProjectTest : BaseTest
+    public class DeleteProjectTest : BaseTest
     {
         [Test]
-        public void TestAddProject()
+        public void TestDeleteProject()
         {
             UserSteps userSteps = new UserSteps(Driver);
             ProjectsPage projectsPage = userSteps.SuccessfulLogin(Configurator.AppSettings.Username, Configurator.AppSettings.Password);
             ProjectSteps projectSteps = new ProjectSteps(Driver);
-            //Thread.Sleep(3000);
             projectsPage = projectSteps.AddProject("Test_Project");
+            projectsPage = projectSteps.DeleteProject(true);
+            //Thread.Sleep(3000);
             Assert.That(projectsPage.IsPageOpened());
-            Assert.That(projectsPage.NameProject.Text.Trim(), Is.EqualTo("Test_Project"));
+            Assert.That(projectsPage.IsNameProjectAbsent("Test_Project"));
         }
     }
 }

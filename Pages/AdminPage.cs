@@ -1,5 +1,6 @@
 ﻿using Diplom_Pokrovskaya.Elements;
 using OpenQA.Selenium;
+using NUnit.Allure.Attributes;
 
 
 namespace Diplom_Pokrovskaya.Pages
@@ -27,8 +28,11 @@ namespace Diplom_Pokrovskaya.Pages
         public Button DeleteProject => new Button(Driver, deleteProject);
 
         // Комплексные
+        [AllureStep("Нажата кнопка корзины")]
         public void ClickDeleteButton() => DeleteButton.Click();
+        [AllureStep("Выбран чек-бокс")]
         public void SetCheckbox(bool flag) => CheckboxSet.SetCheckbox();
+        [AllureStep("Нажата кнопка удаления проекта")]
         public void ClickDeleteProject() => DeleteProject.Click();
 
         protected override string GetEndpoint()

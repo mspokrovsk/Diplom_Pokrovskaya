@@ -1,4 +1,5 @@
-﻿using Diplom_Pokrovskaya.Elements;
+﻿using Allure.NUnit.Attributes;
+using Diplom_Pokrovskaya.Elements;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using System;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Diplom_Pokrovskaya.Pages
 {
@@ -49,16 +51,18 @@ namespace Diplom_Pokrovskaya.Pages
         public IWebElement NameProject => WaitsHelper.WaitForExists(nameProject);
         public Button Admin => new Button(Driver, admin);
         // Комплексные
+        [AllureStep("Нажата кнопка добавления проекта")]
         public void ClickAddToProject() => AddProjectButton.Click();
 
         //public void ClickSubmitButton() => SubmitButton.Click();
+        [AllureStep("Нажата кнопка подтверждения")]
         public ProjectsPage ClickSubmitButton()
         {
             SubmitButton.Click();
             Thread.Sleep(3000);
             return new ProjectsPage(Driver, true);
         }
-
+        [AllureStep("Нажата кнопка Admin")]
         public AdminPage ClickAdmin()
         {
             Admin.Click();
@@ -68,7 +72,7 @@ namespace Diplom_Pokrovskaya.Pages
         {
             return END_POINT;
         }
-
+        
         public override bool IsPageOpened()
         {
             try
@@ -80,7 +84,7 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
-
+        [AllureStep("Отобразилось всплывающее сообщение")]
         public void HoverOverHoverElement()
         {
             Actions action = new Actions(Driver);
@@ -99,12 +103,12 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
-
+        [AllureStep("Отобразилось диалоговое окно")]
         public bool DialogWindowOpened()
         {
             return ProjectDialog.Displayed;
         }
-
+        [AllureStep("Нажата кнопка добавления файла")]
         public void ClickAddFile()
         {
             SelectFileButton.Click();
@@ -112,7 +116,7 @@ namespace Diplom_Pokrovskaya.Pages
             string filePath = Path.Combine(assemblyPath, "Resource", "Avatar.jpg");
             FileInput.SendKeys(filePath);
         }
-
+        [AllureStep("Отображение аватара")]
         public bool AvatarUpload()
         {
             return AvatarJpg.Displayed;

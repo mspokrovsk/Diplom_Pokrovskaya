@@ -1,4 +1,5 @@
-﻿using Diplom_Pokrovskaya.Elements;
+﻿using Allure.NUnit.Attributes;
+using Diplom_Pokrovskaya.Elements;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,7 @@ namespace Diplom_Pokrovskaya.Pages
         {
             return END_POINT;
         }
-
+        
         public override bool IsPageOpened()
         {
             try
@@ -48,8 +49,9 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
+        [AllureStep("Нажата кнопка логина")]
         public void ClickLoginInButton() => LoginButton.Click();
-
+        [AllureStep("Отображение текста ошибки")]
         public string GetErrorLabelText() => TextError.Text.Trim();
     }
 }

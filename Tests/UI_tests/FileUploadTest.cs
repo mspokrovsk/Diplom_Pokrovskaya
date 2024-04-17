@@ -9,6 +9,7 @@ using Allure.Net.Commons;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
+    [TestFixture]
     [AllureEpic("Web Interface")]
     [AllureFeature("Login feature", "AddProject feature")]
     public class FileUploadTest : BaseTest

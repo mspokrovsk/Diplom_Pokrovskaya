@@ -38,9 +38,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resource\Avatar.jpg">
+    <Content Include="Resource\Avatar.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

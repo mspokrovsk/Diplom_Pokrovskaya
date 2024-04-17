@@ -1,6 +1,6 @@
 ﻿using NLog;
 
-namespace Diplom_Pokrovskaya
+namespace Diplom_Pokrovskaya.Core
 {
     public class NLogConfig
     {

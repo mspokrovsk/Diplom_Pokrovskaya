@@ -21,8 +21,6 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         protected WaitsHelper WaitsHelper { get; private set; }
         protected UserSteps UserSteps;
         protected AllureSteps AllureSteps;
-        protected static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-       // private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         [OneTimeSetUp]
         public static void GlobalSetup()

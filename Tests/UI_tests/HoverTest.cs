@@ -9,6 +9,7 @@ using Allure.NUnit.Attributes;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
+    [TestFixture]
     [AllureEpic("Web Interface")]
     [AllureFeature("Login feature")]
 

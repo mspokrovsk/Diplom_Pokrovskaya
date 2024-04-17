@@ -8,6 +8,8 @@ using OpenQA.Selenium;
 using NUnit.Allure.Attributes;
 using System.Text;
 
+
+
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
     [Parallelizable(scope: ParallelScope.All)]
@@ -46,7 +48,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
                 byte[] screenshotBytes = screenshot.AsByteArray;
 
                 AllureApi.AddAttachment("Screenshot", "image/png", screenshotBytes);
-                AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
+                //AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
 
             }
             Driver.Quit();

@@ -8,6 +8,8 @@ using OpenQA.Selenium;
 using NUnit.Allure.Attributes;
 using System.Text;
 
+
+
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
     [Parallelizable(scope: ParallelScope.All)]
@@ -19,6 +21,8 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         protected WaitsHelper WaitsHelper { get; private set; }
         protected UserSteps UserSteps;
         protected AllureSteps AllureSteps;
+        protected static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+       // private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         [OneTimeSetUp]
         public static void GlobalSetup()
@@ -46,7 +50,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
                 byte[] screenshotBytes = screenshot.AsByteArray;
 
                 AllureApi.AddAttachment("Screenshot", "image/png", screenshotBytes);
-                AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
+                //AllureApi.AddAttachment("data.txt", "text/plain", Encoding.UTF8.GetBytes("This os the file content."));
 
             }
             Driver.Quit();

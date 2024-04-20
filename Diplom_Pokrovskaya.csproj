@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="allureConfig.json" />
     <None Remove="Resource\Avatar.jpg" />
+    <None Remove="Resource\ProjectSchema.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.15" />
     <PackageReference Include="NLog" Version="5.2.8" />
     <PackageReference Include="NLog.Schema" Version="5.2.8" />
     <PackageReference Include="NUnit" Version="4.1.0" />
@@ -44,6 +46,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resource\Avatar.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\ProjectSchema.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

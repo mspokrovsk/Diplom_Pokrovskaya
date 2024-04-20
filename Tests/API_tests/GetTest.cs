@@ -4,7 +4,8 @@ using RestSharp;
 using System.Net;
 using NLog;
 using Allure.NUnit;
-using Diplom_Pokrovskaya.Models;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Schema;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
@@ -16,7 +17,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     public class GetTest
     {
         protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private const string BaseRestUri = "https://mspokrovsk.testmo.net";
+        private const string BaseRestUri = "https://mspokrovsk.testmo.net/api/v1/";
 
         [Test(Description = "Проверка успешного ответа от сервера при запросе страницы с проектами")]
         [AllureSeverity(SeverityLevel.normal)]
@@ -25,14 +26,21 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenGetProjects()
         {
-            const string endpoint = "/api/v1/projects?page=1";
+            const string endpoint = "projects";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
-            
+
+            // Загрузка JSON-схемы из файла
+            string schemaJson = File.ReadAllText(@"Resource/ProjectSchema.json");
+
+            // Создем экземпляр JSON-схемы
+            JSchema schema = JSchema.Parse(schemaJson);
+
             // Setup Rest Client
             var client = new RestClient(BaseRestUri);
 
             // Setup Request
-            var request = new RestRequest(endpoint);
+            var request = new RestRequest(endpoint)
+                .AddParameter("page", 1);
 
             request.AddHeader("Authorization", $"Bearer {token}");
 
@@ -41,7 +49,14 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             Logger.Info(response.Content);
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                // Получаем тело ответа в виде JObject
+                JObject responseData = JObject.Parse(response.Content);
+
+                // Проверка соответствия ответа JSON-схеме
+                Assert.That(responseData.IsValid(schema));
+            }
         }
 
         [Test(Description = "Проверка успешного ответа от сервера при запросе пользователя")]
@@ -51,7 +66,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenGetUser()
         {
-            const string endpoint = "/api/v1/users/{user_id}";
+            const string endpoint = "users/{user_id}";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
             // Setup Rest Client
@@ -78,7 +93,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenGetProjectRuns()
         {
-            const string endpoint = "/api/v1/projects/{project_id}/automation/runs";
+            const string endpoint = "projects/{project_id}/automation/runs";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
             // Setup Rest Client
@@ -105,7 +120,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenGetInvalidToken()
         {
-            const string endpoint = "/api/v1/projects/{project_id}";
+            const string endpoint = "projects/{project_id}";
             const string token = "testmo_api";
 
             // Setup Rest Client
@@ -129,10 +144,12 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API AFE")]
-
+        
         public void CheckSuccessfulResponse_WhenGetUnknownProjectId()
         {
-            const string endpoint = "/api/v1/projects/{project_id}";
+            int projectId = new Random().Next(1, 10);
+
+            const string endpoint = "projects/{project_id}";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0";
 
             // Setup Rest Client
@@ -140,7 +157,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             // Setup Request
             var request = new RestRequest(endpoint)
-                .AddUrlSegment("project_id", 1);
+                .AddUrlSegment("project_id", projectId);
 
             request.AddHeader("Authorization", $"Bearer {token}");
 

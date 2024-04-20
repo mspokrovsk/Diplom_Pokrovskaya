@@ -15,7 +15,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     public class PostTest
     {
         protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private const string BaseRestUri = "https://mspokrovsk.testmo.net";
+        private const string BaseRestUri = "https://mspokrovsk.testmo.net/api/v1/";
         private readonly Runs _runIdManager = new Runs();
 
         [Test(Description = "Проверка успешного запуска автоматизации в целевом проекте"), Order(1)]
@@ -25,7 +25,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenPostRuns()
         {
-            const string endpoint = "/api/v1/projects/{project_id}/automation/runs";
+            const string endpoint = "projects/{project_id}/automation/runs";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
             Runs expectedRun = new Runs
@@ -67,7 +67,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenPostRunsComplete()
         {
-            const string endpoint = "/api/v1/automation/runs/{automation_run_id}/complete";
+            const string endpoint = "automation/runs/{automation_run_id}/complete";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
             // Получаем значение "id" из предыдущего теста

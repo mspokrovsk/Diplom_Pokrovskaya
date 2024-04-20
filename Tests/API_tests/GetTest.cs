@@ -4,7 +4,7 @@ using RestSharp;
 using System.Net;
 using NLog;
 using Allure.NUnit;
-using System.Text.Json.Serialization;
+using Diplom_Pokrovskaya.Models;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
@@ -27,7 +27,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         {
             const string endpoint = "/api/v1/projects?page=1";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
-
+            
             // Setup Rest Client
             var client = new RestClient(BaseRestUri);
 
@@ -42,7 +42,6 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             Logger.Info(response.Content);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-
         }
 
         [Test(Description = "Проверка успешного ответа от сервера при запросе пользователя")]
@@ -70,9 +69,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             Logger.Info(response.Content);
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
-
         }
-
     }
 }
    

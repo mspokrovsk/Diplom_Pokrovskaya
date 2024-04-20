@@ -70,6 +70,87 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
+
+        [Test(Description = "Проверка успешного ответа от сервера при запросе всех запусков автоматизации в целевом проекте")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("API NFE")]
+
+        public void CheckSuccessfulResponse_WhenGetProjectRuns()
+        {
+            const string endpoint = "/api/v1/projects/{project_id}/automation/runs";
+            const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
+
+            // Setup Rest Client
+            var client = new RestClient(BaseRestUri);
+
+            // Setup Request
+            var request = new RestRequest(endpoint)
+                .AddUrlSegment("project_id", 41);
+
+            request.AddHeader("Authorization", $"Bearer {token}");
+
+            // Execute Request
+            var response = client.ExecuteGet(request);
+
+            Logger.Info(response.Content);
+
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
+        }
+
+        [Test(Description = "Invalid or missing Testmo API token")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("API AFE")]
+
+        public void CheckSuccessfulResponse_WhenGetInvalidToken()
+        {
+            const string endpoint = "/api/v1/projects/{project_id}";
+            const string token = "testmo_api";
+
+            // Setup Rest Client
+            var client = new RestClient(BaseRestUri);
+
+            // Setup Request
+            var request = new RestRequest(endpoint)
+                .AddUrlSegment("project_id", 41);
+
+            request.AddHeader("Authorization", $"Bearer {token}");
+
+            // Execute Request
+            var response = client.ExecuteGet(request);
+
+            Logger.Info(response.Content);
+
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Unauthorized));
+        }
+
+        [Test(Description = "Unknown or deleted objects in API requests")]
+        [AllureSeverity(SeverityLevel.normal)]
+        [AllureOwner("mspokrovsk")]
+        [AllureStory("API AFE")]
+
+        public void CheckSuccessfulResponse_WhenGetUnknownProjectId()
+        {
+            const string endpoint = "/api/v1/projects/{project_id}";
+            const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0";
+
+            // Setup Rest Client
+            var client = new RestClient(BaseRestUri);
+
+            // Setup Request
+            var request = new RestRequest(endpoint)
+                .AddUrlSegment("project_id", 1);
+
+            request.AddHeader("Authorization", $"Bearer {token}");
+
+            // Execute Request
+            var response = client.ExecuteGet(request);
+
+            Logger.Info(response.Content);
+
+            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
+        }
     }
 }
    

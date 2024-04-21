@@ -18,7 +18,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         private const string BaseRestUri = "https://mspokrovsk.testmo.net/api/v1/";
         private readonly Runs _runIdManager = new Runs();
 
-        [Test(Description = "Проверка успешного запуска автоматизации в целевом проекте"), Order(1)]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ Р·Р°РїСѓСЃРєР° Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РІ С†РµР»РµРІРѕРј РїСЂРѕРµРєС‚Рµ"), Order(1)]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API POST")]
@@ -51,16 +51,16 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
-            // Получаем значение поля "id"
+            // РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ "id"
             int id = actualRun.Id;
 
-            // Сохраняем значение "id" для использования в следующем тесте
+            // РЎРѕС…СЂР°РЅСЏРµРј Р·РЅР°С‡РµРЅРёРµ "id" РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РІ СЃР»РµРґСѓСЋС‰РµРј С‚РµСЃС‚Рµ
             _runIdManager.SaveRunId(id);
 
-            Logger.Info($"Значение поля 'id': {id}");
+            Logger.Info($"Г‡Г­Г Г·ГҐГ­ГЁГҐ ГЇГ®Г«Гї 'id': {id}");
         }
 
-        [Test(Description = "Проверка успешного завершения запуска автоматизации в целевом проекте"), Order(2)]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ Р·Р°РїСѓСЃРєР° Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РІ С†РµР»РµРІРѕРј РїСЂРѕРµРєС‚Рµ"), Order(2)]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API POST")]
@@ -70,7 +70,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             const string endpoint = "automation/runs/{automation_run_id}/complete";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
-            // Получаем значение "id" из предыдущего теста
+            // РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ "id" РёР· РїСЂРµРґС‹РґСѓС‰РµРіРѕ С‚РµСЃС‚Р°
             int runId = _runIdManager.GetRunId();
 
             // Setup Rest Client

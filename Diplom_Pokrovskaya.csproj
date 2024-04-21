@@ -65,4 +65,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".github\workflows\dotnet.yml" />
+  </ItemGroup>
+
 </Project>

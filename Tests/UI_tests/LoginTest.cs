@@ -11,7 +11,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
     public class LoginTest : BaseTest
     {
-        [Test(Description = "Проверка перехода на главную страницу после логина с корректными данными")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РїРµСЂРµС…РѕРґР° РЅР° РіР»Р°РІРЅСѓСЋ СЃС‚СЂР°РЅРёС†Сѓ РїРѕСЃР»Рµ Р»РѕРіРёРЅР° СЃ РєРѕСЂСЂРµРєС‚РЅС‹РјРё РґР°РЅРЅС‹РјРё")]
         [AllureSeverity(SeverityLevel.critical)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story1")]
@@ -23,7 +23,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             Assert.That(projectsPage.IsPageOpened);
         }
 
-        [Test(Description = "Проверка отображения ошибки These credentials do not match our records or the user account is not allowed to log in. после логина с некорректным email")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕС€РёР±РєРё These credentials do not match our records or the user account is not allowed to log in. ГЇГ®Г±Г«ГҐ Г«Г®ГЈГЁГ­Г  Г± Г­ГҐГЄГ®Г°Г°ГҐГЄГІГ­Г»Г¬ email")]
         [AllureSeverity(SeverityLevel.blocker)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story1")]

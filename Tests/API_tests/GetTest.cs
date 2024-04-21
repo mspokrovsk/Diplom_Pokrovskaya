@@ -19,7 +19,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private const string BaseRestUri = "https://mspokrovsk.testmo.net/api/v1/";
 
-        [Test(Description = "Проверка успешного ответа от сервера при запросе страницы с проектами")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР° РїСЂРё Р·Р°РїСЂРѕСЃРµ СЃС‚СЂР°РЅРёС†С‹ СЃ РїСЂРѕРµРєС‚Р°РјРё")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API NFE")]
@@ -29,10 +29,10 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             const string endpoint = "projects";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
-            // Загрузка JSON-схемы из файла
+            // Р—Р°РіСЂСѓР·РєР° JSON-СЃС…РµРјС‹ РёР· С„Р°Р№Р»Р°
             string schemaJson = File.ReadAllText(@"Resource/ProjectSchema.json");
 
-            // Создем экземпляр JSON-схемы
+            // РЎРѕР·РґРµРј СЌРєР·РµРјРїР»СЏСЂ JSON-СЃС…РµРјС‹
             JSchema schema = JSchema.Parse(schemaJson);
 
             // Setup Rest Client
@@ -51,15 +51,15 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             if (response.StatusCode == HttpStatusCode.OK)
             {
-                // Получаем тело ответа в виде JObject
+                // РџРѕР»СѓС‡Р°РµРј С‚РµР»Рѕ РѕС‚РІРµС‚Р° РІ РІРёРґРµ JObject
                 JObject responseData = JObject.Parse(response.Content);
 
-                // Проверка соответствия ответа JSON-схеме
+                // РџСЂРѕРІРµСЂРєР° СЃРѕРѕС‚РІРµС‚СЃС‚РІРёСЏ РѕС‚РІРµС‚Р° JSON-СЃС…РµРјРµ
                 Assert.That(responseData.IsValid(schema));
             }
         }
 
-        [Test(Description = "Проверка успешного ответа от сервера при запросе пользователя")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР° РїСЂРё Р·Р°РїСЂРѕСЃРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API NFE")]
@@ -86,7 +86,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.OK));
         }
 
-        [Test(Description = "Проверка успешного ответа от сервера при запросе всех запусков автоматизации в целевом проекте")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ РѕС‚РІРµС‚Р° РѕС‚ СЃРµСЂРІРµСЂР° РїСЂРё Р·Р°РїСЂРѕСЃРµ РІСЃРµС… Р·Р°РїСѓСЃРєРѕРІ Р°РІС‚РѕРјР°С‚РёР·Р°С†РёРё РІ С†РµР»РµРІРѕРј РїСЂРѕРµРєС‚Рµ")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API NFE")]

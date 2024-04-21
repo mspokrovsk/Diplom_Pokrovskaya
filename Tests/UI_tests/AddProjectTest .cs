@@ -12,7 +12,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     [AllureFeature("Login feature", "AddProject feature")]
     public class AddProjectTest : BaseTest
     {
-        [Test(Description = "Проверка успешного создания проекта")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ СЃРѕР·РґР°РЅРёСЏ РїСЂРѕРµРєС‚Р°")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story1")]

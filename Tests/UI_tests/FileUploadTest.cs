@@ -21,7 +21,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             ProjectsPage projectsPage = userSteps.SuccessfulLogin(Configurator.AppSettings.Username, Configurator.AppSettings.Password);
             projectsPage.ClickAddToProject();
             projectsPage.ClickAddFile();
-            //Thread.Sleep(3000);
+            
             Assert.That(projectsPage.AvatarUpload);
         }
     }

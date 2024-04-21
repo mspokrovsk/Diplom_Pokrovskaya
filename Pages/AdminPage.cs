@@ -10,7 +10,7 @@ namespace Diplom_Pokrovskaya.Pages
         private static string END_POINT = "admin/projects";
 
         private static By pageTitle = By.ClassName("page-header__title");
-        private static By delete = By.CssSelector("tr[data-name='Test_Project_Delete'] td.table__field__action div[data-action='delete']");
+        private static By delete = By.CssSelector("tr[data-name='Test_Delete'] td.table__field__action div[data-action='delete']");
         private static By deleteProjectDialog = By.CssSelector("[data-target='title']");
         private static By checkbox = By.CssSelector("[data-target='confirmationLabel']");
         private static By deleteProject = By.CssSelector("[data-target='deleteButton']");

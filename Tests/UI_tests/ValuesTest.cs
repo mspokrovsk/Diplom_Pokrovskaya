@@ -11,7 +11,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     [AllureFeature("Login feature", "AddProject feature")]
     public class ValuesTest : BaseTest
     {
-        [Test(Description = "Проверка на граничные значения")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РЅР° РіСЂР°РЅРёС‡РЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story5")]

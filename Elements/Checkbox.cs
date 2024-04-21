@@ -16,7 +16,7 @@ namespace Diplom_Pokrovskaya.Elements
             _uiElement = new UIElement(webDriver, webElement);
         }
 
-        public void Click()
+        private void Click()
         {
             _uiElement.Click();
         }
@@ -32,7 +32,7 @@ namespace Diplom_Pokrovskaya.Elements
             ToggleCheckbox(false); 
         }
 
-        public void ToggleCheckbox(bool flag) 
+        private void ToggleCheckbox(bool flag) 
         {
             if (IsSelected() == flag)
             {
@@ -41,13 +41,13 @@ namespace Diplom_Pokrovskaya.Elements
         }
 
         public bool Displayed => _uiElement.Displayed;
+
         public bool Enabled => _uiElement.Enabled;
 
         public bool IsSelected()
         {
             string afterAttributeValue = _uiElement.GetAttribute("::after");
             return string.IsNullOrEmpty(afterAttributeValue); 
-
         }
     }
 }

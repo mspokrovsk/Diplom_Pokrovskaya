@@ -46,7 +46,9 @@ namespace Diplom_Pokrovskaya.Helpers.Configuration
         }
 
         public static string? BrowserType => Configuration[nameof(BrowserType)];
+
         public static double WaitsTimeout => Double.Parse(Configuration[nameof(WaitsTimeout)]);
+
         public static string? Language => Configuration[nameof(Language)];
     }
 }

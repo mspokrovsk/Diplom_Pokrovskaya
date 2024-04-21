@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 
-
 namespace Diplom_Pokrovskaya.Elements
 {
     public class Button
@@ -28,6 +27,7 @@ namespace Diplom_Pokrovskaya.Elements
         }
 
         public string Text => _uiElement.Text;
+
         public bool Displayed => _uiElement.Displayed;
     }
 }

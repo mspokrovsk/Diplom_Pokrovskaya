@@ -101,7 +101,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             // Setup Request
             var request = new RestRequest(endpoint)
-                .AddUrlSegment("project_id", 41);
+                .AddUrlSegment("project_id", 48);
 
             request.AddHeader("Authorization", $"Bearer {token}");
 
@@ -128,7 +128,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             // Setup Request
             var request = new RestRequest(endpoint)
-                .AddUrlSegment("project_id", 41);
+                .AddUrlSegment("project_id", 48);
 
             request.AddHeader("Authorization", $"Bearer {token}");
 

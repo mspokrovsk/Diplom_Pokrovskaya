@@ -25,7 +25,9 @@ namespace Diplom_Pokrovskaya.Pages
         }
 
         protected abstract string GetEndpoint();
+
         public abstract bool IsPageOpened();
+
         [AllureStep("Открыта страница")]
         protected void OpenPageByURL()
         {

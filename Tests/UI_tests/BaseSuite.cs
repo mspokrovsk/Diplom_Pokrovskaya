@@ -1,8 +1,6 @@
 using Diplom_Pokrovskaya.Core;
 using NLog;
 
-
-
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
     [SetUpFixture]

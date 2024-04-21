@@ -2,13 +2,7 @@
 using Diplom_Pokrovskaya.Elements;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace Diplom_Pokrovskaya.Pages
 {
@@ -16,7 +10,6 @@ namespace Diplom_Pokrovskaya.Pages
     {
         private static string END_POINT = "";
 
-        // Описание элементов
         private static By pageTitle = By.ClassName("page-title__title");
         private static By addProjectButton = By.CssSelector("[data-target='home--index.addButton']");
         private static By hoverElement = By.CssSelector("[data-content='mspokrovsk']");
@@ -28,33 +21,43 @@ namespace Diplom_Pokrovskaya.Pages
         private static By projectName = By.CssSelector("[data-target='name']");
         private static By addDemoProject = By.CssSelector("[data-target='addDemoProject']");
         private static By submitButton = By.CssSelector("[data-target='submitButton']");
-        private static By nameProject = By.XPath("//a[starts-with(@href,'https://mspokrovsk.testmo.net/projects/view/')]");
+        private static By nameProject = By.XPath("//a[contains(@href, 'mspokrovsk.testmo.net/projects/view') and contains(text(), 'Test_Project')]");
         private static By admin = By.CssSelector("[data-content='Admin']");
-        // Инициализация класса
+
         public ProjectsPage(IWebDriver driver, bool openPageByUrl) : base(driver, openPageByUrl)
         {
 
         }
-        // Методы
+
         public IWebElement PageTitle => WaitsHelper.WaitForExists(pageTitle);
-       // public IWebElement AddProjectButton => WaitsHelper.WaitForExists(addProjectButton);
+
         public Button AddProjectButton => new Button(Driver, addProjectButton);
+
         public IWebElement HoverElement => WaitsHelper.WaitForExists(hoverElement);
+
         public IWebElement ProjectDialog => WaitsHelper.WaitForExists(projectDialog);
+
         public IWebElement SelectFileButton => WaitsHelper.WaitForExists(selectFileButton);
+
         public IWebElement FileInput => WaitsHelper.WaitForExists(fileInput);
+
         public IWebElement AvatarJpg => WaitsHelper.WaitForExists(avatarJpg);
+
         public IWebElement Summary => WaitsHelper.WaitForExists(summary);
+
         public IWebElement ProjectName => WaitsHelper.WaitForExists(projectName);
+
         public Checkbox AddDemoProject => new Checkbox(Driver, addDemoProject);
+
         public Button SubmitButton => new Button(Driver, submitButton);
+
         public IWebElement NameProject => WaitsHelper.WaitForExists(nameProject);
+
         public Button Admin => new Button(Driver, admin);
-        // Комплексные
+
         [AllureStep("Нажата кнопка добавления проекта")]
         public void ClickAddToProject() => AddProjectButton.Click();
 
-        //public void ClickSubmitButton() => SubmitButton.Click();
         [AllureStep("Нажата кнопка подтверждения")]
         public ProjectsPage ClickSubmitButton()
         {
@@ -62,13 +65,15 @@ namespace Diplom_Pokrovskaya.Pages
             Thread.Sleep(3000);
             return new ProjectsPage(Driver, true);
         }
+
         [AllureStep("Нажата кнопка Admin")]
         public AdminPage ClickAdmin()
         {
             Admin.Click();
             return new AdminPage(Driver, true);
         }
-    protected override string GetEndpoint()
+    
+        protected override string GetEndpoint()
         {
             return END_POINT;
         }
@@ -84,6 +89,7 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
+
         [AllureStep("Отобразилось всплывающее сообщение")]
         public void HoverOverHoverElement()
         {
@@ -103,11 +109,13 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
+
         [AllureStep("Отобразилось диалоговое окно")]
         public bool DialogWindowOpened()
         {
             return ProjectDialog.Displayed;
         }
+
         [AllureStep("Нажата кнопка добавления файла")]
         public void ClickAddFile()
         {
@@ -116,6 +124,7 @@ namespace Diplom_Pokrovskaya.Pages
             string filePath = Path.Combine(assemblyPath, "Resource", "Avatar.jpg");
             FileInput.SendKeys(filePath);
         }
+
         [AllureStep("Отображение аватара")]
         public bool AvatarUpload()
         {
@@ -140,6 +149,7 @@ namespace Diplom_Pokrovskaya.Pages
         {
             return !IsElementPresent(By.XPath($"//div[contains(text(), '{text}')]"));
         }
+
         public bool IsElementPresent(By locator)
         {
             try
@@ -152,6 +162,5 @@ namespace Diplom_Pokrovskaya.Pages
                 return false;
             }
         }
-
     }
 }

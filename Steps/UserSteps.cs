@@ -1,6 +1,5 @@
 ﻿using Diplom_Pokrovskaya.Pages;
 using OpenQA.Selenium;
-using Diplom_Pokrovskaya.Steps;
 
 namespace Diplom_Pokrovskaya.Steps
 {

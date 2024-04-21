@@ -21,10 +21,13 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             UserSteps userSteps = new UserSteps(Driver);
             ProjectsPage projectsPage = userSteps.SuccessfulLogin(Configurator.AppSettings.Username, Configurator.AppSettings.Password);
             ProjectSteps projectSteps = new ProjectSteps(Driver);
-            //Thread.Sleep(3000);
             projectsPage = projectSteps.AddProject("Test_Project");
-            Assert.That(projectsPage.IsPageOpened());
-            Assert.That(projectsPage.NameProject.Text.Trim(), Is.EqualTo("Test_Project"));
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(projectsPage.IsPageOpened());
+                Assert.That(projectsPage.NameProject.Text.Trim(), Is.EqualTo("Test_Project"));
+            });
         }
     }
 }

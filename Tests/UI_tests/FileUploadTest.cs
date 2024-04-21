@@ -1,8 +1,5 @@
-using Diplom_Pokrovskaya.Core;
 using Diplom_Pokrovskaya.Helpers.Configuration;
-using OpenQA.Selenium;
 using Diplom_Pokrovskaya.Pages;
-using OpenQA.Selenium.Interactions;
 using Diplom_Pokrovskaya.Steps;
 using Allure.NUnit.Attributes;
 using Allure.Net.Commons;
@@ -24,7 +21,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             ProjectsPage projectsPage = userSteps.SuccessfulLogin(Configurator.AppSettings.Username, Configurator.AppSettings.Password);
             projectsPage.ClickAddToProject();
             projectsPage.ClickAddFile();
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             Assert.That(projectsPage.AvatarUpload);
         }
     }

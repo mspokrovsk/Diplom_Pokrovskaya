@@ -13,7 +13,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
     public class HoverTest : BaseTest
     {
-        [Test(Description = "Проверка на скриншот")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РЅР° СЃРєСЂРёРЅС€РѕС‚")]
         [AllureSeverity(SeverityLevel.blocker)]
         [AllureOwner("mspokrovsk")]
         [AllureIssue("TMS-123")]

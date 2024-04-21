@@ -11,7 +11,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     [AllureFeature("Login feature", "AddProject feature")]
     public class FileUploadTest : BaseTest
     {
-        [Test(Description = "Проверка на загрузку файла")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РіСЂСѓР·РєСѓ С„Р°Р№Р»Р°")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story5")]

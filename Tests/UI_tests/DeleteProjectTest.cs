@@ -11,7 +11,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
     public class DeleteProjectTest : BaseTest
     {
-        [Test(Description = "Проверка успешного удаления созданного проекта")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° СѓСЃРїРµС€РЅРѕРіРѕ СѓРґР°Р»РµРЅРёСЏ СЃРѕР·РґР°РЅРЅРѕРіРѕ РїСЂРѕРµРєС‚Р°")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story2")]

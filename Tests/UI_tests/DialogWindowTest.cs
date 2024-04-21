@@ -10,7 +10,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
     [AllureFeature("Login feature", "AddProject feature")]
     public class DialogWindowTest : BaseTest
     {
-        [Test(Description = "Проверка отображения диалогового окна")]
+        [Test(Description = "РџСЂРѕРІРµСЂРєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("Story4")]

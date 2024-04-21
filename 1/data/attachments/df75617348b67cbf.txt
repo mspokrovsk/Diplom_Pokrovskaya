@@ -1,0 +1,1 @@
+2024-04-21 15:45:01.9956|INFO|Diplom_Pokrovskaya.Tests.UI_tests.GetTest|{"message":"The project does not exist or you do not have the permissions to access it.","code":0}

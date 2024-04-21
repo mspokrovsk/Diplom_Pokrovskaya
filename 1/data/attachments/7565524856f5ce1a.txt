@@ -1,0 +1,1 @@
+2024-04-21 15:45:00.9832|INFO|Diplom_Pokrovskaya.Tests.UI_tests.GetTest|{"message":"Unauthenticated."}

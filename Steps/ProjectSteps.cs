@@ -1,6 +1,5 @@
 ﻿using Diplom_Pokrovskaya.Pages;
 using OpenQA.Selenium;
-using Diplom_Pokrovskaya.Steps;
 
 namespace Diplom_Pokrovskaya.Steps
 {
@@ -28,11 +27,8 @@ namespace Diplom_Pokrovskaya.Steps
         public ProjectsPage DeleteProject(bool flag)
         {
             _projectsPage.ClickAdmin();
-            //Thread.Sleep(3000);
             _adminPage.ClickDeleteButton();
-            //Thread.Sleep(3000);
             _adminPage.SetCheckbox(flag);
-           // Thread.Sleep(3000);
             _adminPage.ClickDeleteProject();
 
             return new ProjectsPage(Driver, true);

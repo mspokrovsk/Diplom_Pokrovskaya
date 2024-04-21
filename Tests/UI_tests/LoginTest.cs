@@ -1,6 +1,4 @@
-using Diplom_Pokrovskaya.Core;
 using Diplom_Pokrovskaya.Helpers.Configuration;
-using OpenQA.Selenium;
 using Diplom_Pokrovskaya.Pages;
 using Diplom_Pokrovskaya.Steps;
 using Allure.NUnit.Attributes;

@@ -1,6 +1,4 @@
-﻿using Allure.Net.Commons;
-using NUnit.Allure.Attributes;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Diplom_Pokrovskaya.Steps
 {

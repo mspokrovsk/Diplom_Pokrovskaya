@@ -34,17 +34,14 @@ namespace Diplom_Pokrovskaya.Helpers
         {
             try
             {
-                // Проверка, видим ли элемент
                 return _wait.Until(d => !webElement.Displayed);
             }
             catch (NoSuchElementException)
             {
-                // Если элемент не найден, считаем его невидимым
                 return true;
             }
             catch (StaleElementReferenceException)
             {
-                // Если элемент устарел, считаем его невидимым
                 return true;
             }
             catch (WebDriverTimeoutException)
@@ -65,7 +62,6 @@ namespace Diplom_Pokrovskaya.Helpers
 
         public IWebElement FluentWaitForElement(By locator)
         {
-            // Инициализация и параметризация FluentWait
             WebDriverWait fluentWait = new WebDriverWait(driver, TimeSpan.FromSeconds(15))
             {
                 PollingInterval = TimeSpan.FromMilliseconds(50)
@@ -73,7 +69,6 @@ namespace Diplom_Pokrovskaya.Helpers
 
             fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
 
-            // Использование
             return fluentWait.Until(_ => driver.FindElement(locator));
         }
     }

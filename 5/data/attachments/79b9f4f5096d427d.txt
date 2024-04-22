@@ -1,0 +1,2 @@
+2024-04-22 09:12:31.4634|INFO|Diplom_Pokrovskaya.Tests.UI_tests.PostTest|Id: 44
+2024-04-22 09:12:31.4671|INFO|Diplom_Pokrovskaya.Tests.UI_tests.PostTest|Çíà÷åíèå ïîëÿ 'id': 44

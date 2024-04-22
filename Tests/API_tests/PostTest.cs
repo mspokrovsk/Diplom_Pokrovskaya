@@ -67,7 +67,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
                 // Сохраняем значение "id" для использования в следующем тесте
                 _runIdManager.SaveRunId(id);
 
-                Logger.Info($"Çíà÷åíèå ïîëÿ 'id': {id}");
+                Logger.Info($"Значение поля 'id': {id}");
 
                 isFirstTestExecuted = true;
 

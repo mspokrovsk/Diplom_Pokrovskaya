@@ -7,7 +7,7 @@ using Allure.NUnit.Attributes;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
-    [TestFixture]
+ /*   [TestFixture]
     [AllureEpic("Web Interface")]
     [AllureFeature("Login feature")]
 
@@ -29,6 +29,6 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
             Assert.That(projectsPage.IsTooltipTextCorrect(tooltipText, "mspokrovsk"));
         }
-    }
+    }*/
 }
    

@@ -27,7 +27,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             autoResetEvent.Dispose();
         }
 
-        [Test(Description = "Проверка успешного запуска автоматизации в целевом проекте"), Order(1)]
+        [Test(Description = "Проверка успешного запуска автоматизации в целевом проекте")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API POST")]
@@ -50,9 +50,8 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
                 // Setup Request
                 var request = new RestRequest(endpoint)
                     .AddUrlSegment("project_id", 48)
-                    .AddJsonBody(expectedRun);
-
-                request.AddHeader("Authorization", $"Bearer {token}");
+                    .AddJsonBody(expectedRun)
+                    .AddHeader("Authorization", $"Bearer {token}");
 
                 // Execute Request
                 var response = client.ExecutePost<Runs>(request);
@@ -76,7 +75,7 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
             }
         }
 
-        [Test(Description = "Проверка успешного завершения запуска автоматизации в целевом проекте"), Order(2)]
+        [Test(Description = "Проверка успешного завершения запуска автоматизации в целевом проекте")]
         [AllureSeverity(SeverityLevel.normal)]
         [AllureOwner("mspokrovsk")]
         [AllureStory("API POST")]
@@ -102,8 +101,6 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
                 .AddUrlSegment("automation_run_id", runId)
                 .AddHeader("Content-Type", "application/json")
                 .AddHeader("Authorization", $"Bearer {token}");
-
-            request.AddHeader("Authorization", $"Bearer {token}");
 
             // Execute Request
             var response = client.ExecutePost(request);

@@ -8,6 +8,7 @@ using Diplom_Pokrovskaya.Models;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
+    [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureEpic("API")]
         
@@ -16,6 +17,15 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         protected readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private const string BaseRestUri = "https://mspokrovsk.testmo.net/api/v1/";
         private readonly Runs _runIdManager = new Runs();
+        private static readonly object lockObject = new object();
+        private static bool isFirstTestExecuted = false;
+        private static AutoResetEvent autoResetEvent = new AutoResetEvent(false);
+
+        [OneTimeTearDown]
+        public void Dispose()
+        {
+            autoResetEvent.Dispose();
+        }
 
         [Test(Description = "Проверка успешного запуска автоматизации в целевом проекте"), Order(1)]
         [AllureSeverity(SeverityLevel.normal)]
@@ -24,39 +34,46 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
 
         public void CheckSuccessfulResponse_WhenPostRuns()
         {
-            const string endpoint = "projects/{project_id}/automation/runs";
-            const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
-
-            Runs expectedRun = new Runs
+            lock (lockObject)
             {
-                Name = "Run 1",
-                Source = "backend",
-            };
-            // Setup Rest Client
-            var client = new RestClient(BaseRestUri);
+                const string endpoint = "projects/{project_id}/automation/runs";
+                const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
 
-            // Setup Request
-            var request = new RestRequest(endpoint)
-                .AddUrlSegment("project_id", 48)
-                .AddJsonBody(expectedRun); 
+                Runs expectedRun = new Runs
+                {
+                    Name = "Run 1",
+                    Source = "backend",
+                };
+                // Setup Rest Client
+                var client = new RestClient(BaseRestUri);
 
-            request.AddHeader("Authorization", $"Bearer {token}");
+                // Setup Request
+                var request = new RestRequest(endpoint)
+                    .AddUrlSegment("project_id", 48)
+                    .AddJsonBody(expectedRun);
 
-            // Execute Request
-            var response = client.ExecutePost<Runs>(request);
-            Runs actualRun = response.Data;
+                request.AddHeader("Authorization", $"Bearer {token}");
 
-            Logger.Info(actualRun);
+                // Execute Request
+                var response = client.ExecutePost<Runs>(request);
+                Runs actualRun = response.Data;
 
-            Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
+                Logger.Info(actualRun);
 
-            // Получаем значение поля "id"
-            int id = actualRun.Id;
+                Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.Created));
 
-            // Сохраняем значение "id" для использования в следующем тесте
-            _runIdManager.SaveRunId(id);
+                // Получаем значение поля "id"
+                int id = actualRun.Id;
 
-            Logger.Info($"Çíà÷åíèå ïîëÿ 'id': {id}");
+                // Сохраняем значение "id" для использования в следующем тесте
+                _runIdManager.SaveRunId(id);
+
+                Logger.Info($"Çíà÷åíèå ïîëÿ 'id': {id}");
+
+                isFirstTestExecuted = true;
+
+                autoResetEvent.Set();
+            }
         }
 
         [Test(Description = "Проверка успешного завершения запуска автоматизации в целевом проекте"), Order(2)]
@@ -68,6 +85,11 @@ namespace Diplom_Pokrovskaya.Tests.UI_tests
         {
             const string endpoint = "automation/runs/{automation_run_id}/complete";
             const string token = "testmo_api_eyJpdiI6IkZGcDJ4M2JFTkFacCtBVG51dTZST2c9PSIsInZhbHVlIjoiQUZJbnlQVElTOVBockNDeVk5WVlqcHlPeTBpQis1bnpZb1hSbzUrVVR1Zz0iLCJtYWMiOiJiNzE5ZDEzZTc3OTgxYzliZmQzN2Q3OTFmNGY0ZGZkZGE1YTU4MzIyNWY0MDFhMDdkZjZlZjFlMzFiMzk3MzUxIiwidGFnIjoiIn0=";
+            
+            while (!isFirstTestExecuted)
+            {
+                WaitHandle.WaitAll(new WaitHandle[] { autoResetEvent });
+            }
 
             // Получаем значение "id" из предыдущего теста
             int runId = _runIdManager.GetRunId();

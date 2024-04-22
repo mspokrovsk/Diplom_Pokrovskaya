@@ -8,7 +8,6 @@ using Diplom_Pokrovskaya.Models;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
-    [TestFixture]
     [AllureNUnit]
     [AllureEpic("API")]
         

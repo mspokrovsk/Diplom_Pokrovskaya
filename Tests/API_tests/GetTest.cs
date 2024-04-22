@@ -9,8 +9,7 @@ using Newtonsoft.Json.Schema;
 
 namespace Diplom_Pokrovskaya.Tests.UI_tests
 {
-    [TestFixture]
-    [Parallelizable(scope: ParallelScope.All)]
+   // [Parallelizable(scope: ParallelScope.All)]
     [AllureNUnit]
     [AllureEpic("API")]
         

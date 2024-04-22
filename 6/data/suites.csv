@@ -1,0 +1,31 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Apr 22 09:28:15 GMT 2024","Mon Apr 22 09:28:18 GMT 2024","2944","","","","ValuesTest","ExceedingPermissibleValuesTest","ExceedingPermissibleValuesTest","Проверка на граничные значения
+"
+"passed","Mon Apr 22 09:28:11 GMT 2024","Mon Apr 22 09:28:11 GMT 2024","211","","","","GetTest","CheckSuccessfulResponse_WhenGetProjectRuns","CheckSuccessfulResponse_WhenGetProjectRuns","Проверка успешного ответа от сервера при запросе всех запусков автоматизации в целевом проекте
+"
+"passed","Mon Apr 22 09:28:14 GMT 2024","Mon Apr 22 09:28:14 GMT 2024","196","","","","PostTest","CheckSuccessfulResponse_WhenPostRunsComplete","CheckSuccessfulResponse_WhenPostRunsComplete","Проверка успешного завершения запуска автоматизации в целевом проекте
+"
+"passed","Mon Apr 22 09:28:14 GMT 2024","Mon Apr 22 09:28:14 GMT 2024","170","","","","PostTest","CheckSuccessfulResponse_WhenPostRuns","CheckSuccessfulResponse_WhenPostRuns","Проверка успешного запуска автоматизации в целевом проекте
+"
+"passed","Mon Apr 22 09:28:02 GMT 2024","Mon Apr 22 09:28:16 GMT 2024","14156","","","","DeleteProjectTest","TestDeleteProject","TestDeleteProject","Проверка успешного удаления созданного проекта
+"
+"passed","Mon Apr 22 09:28:02 GMT 2024","Mon Apr 22 09:28:11 GMT 2024","9369","","","","FileUploadTest","TestFileUpload","TestFileUpload","Проверка на загрузку файла
+"
+"passed","Mon Apr 22 09:28:11 GMT 2024","Mon Apr 22 09:28:11 GMT 2024","143","","","","GetTest","CheckSuccessfulResponse_WhenGetUnknownProjectId","CheckSuccessfulResponse_WhenGetUnknownProjectId","Unknown or deleted objects in API requests
+"
+"passed","Mon Apr 22 09:28:13 GMT 2024","Mon Apr 22 09:28:15 GMT 2024","2361","","","","LoginTest","LoginWithStandardUser","LoginWithStandardUser","Проверка перехода на главную страницу после логина с корректными данными
+"
+"passed","Mon Apr 22 09:28:11 GMT 2024","Mon Apr 22 09:28:11 GMT 2024","240","","","","GetTest","CheckSuccessfulResponse_WhenGetInvalidToken","CheckSuccessfulResponse_WhenGetInvalidToken","Invalid or missing Testmo API token
+"
+"passed","Mon Apr 22 09:28:11 GMT 2024","Mon Apr 22 09:28:13 GMT 2024","1605","","","","GetTest","CheckSuccessfulResponse_WhenGetUser","CheckSuccessfulResponse_WhenGetUser","Проверка успешного ответа от сервера при запросе пользователя
+"
+"failed","Mon Apr 22 09:28:14 GMT 2024","Mon Apr 22 09:28:17 GMT 2024","2845","","","","HoverTest","HoverTests","HoverTests","Проверка на скриншот
+"
+"passed","Mon Apr 22 09:28:12 GMT 2024","Mon Apr 22 09:28:14 GMT 2024","1839","","","","LoginTest","LoginWithErrorUsername","LoginWithErrorUsername","Проверка отображения ошибки These credentials do not match our records or the user account is not allowed to log in. ïîñëå ëîãèíà ñ íåêîððåêòíûì email
+"
+"passed","Mon Apr 22 09:28:11 GMT 2024","Mon Apr 22 09:28:12 GMT 2024","935","","","","GetTest","CheckSuccessfulResponse_WhenGetProjects","CheckSuccessfulResponse_WhenGetProjects","Проверка успешного ответа от сервера при запросе страницы с проектами
+"
+"passed","Mon Apr 22 09:28:02 GMT 2024","Mon Apr 22 09:28:15 GMT 2024","13115","","","","AddProjectTest","TestAddProject","TestAddProject","Проверка успешного создания проекта
+"
+"passed","Mon Apr 22 09:28:02 GMT 2024","Mon Apr 22 09:28:11 GMT 2024","9058","","","","DialogWindowTest","TestDialogWindow","TestDialogWindow","Проверка отображения диалогового окна
+"

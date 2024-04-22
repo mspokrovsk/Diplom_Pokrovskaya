@@ -1,0 +1,2 @@
+2024-04-22 09:28:14.3684|INFO|Diplom_Pokrovskaya.Tests.UI_tests.PostTest|Id: 45
+2024-04-22 09:28:14.3684|INFO|Diplom_Pokrovskaya.Tests.UI_tests.PostTest|Значение поля 'id': 45

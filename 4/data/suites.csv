@@ -1,0 +1,21 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Apr 22 08:39:42 GMT 2024","Mon Apr 22 08:39:43 GMT 2024","1910","","","","LoginTest","LoginWithErrorUsername","LoginWithErrorUsername","Проверка отображения ошибки These credentials do not match our records or the user account is not allowed to log in. ïîñëå ëîãèíà ñ íåêîððåêòíûì email
+"
+"passed","Mon Apr 22 08:39:47 GMT 2024","Mon Apr 22 08:39:47 GMT 2024","137","","","","PostTest","CheckSuccessfulResponse_WhenPostRuns","CheckSuccessfulResponse_WhenPostRuns","Проверка успешного запуска автоматизации в целевом проекте
+"
+"failed","Mon Apr 22 08:39:41 GMT 2024","Mon Apr 22 08:39:44 GMT 2024","2354","","","","HoverTest","HoverTests","HoverTests","Проверка на скриншот
+"
+"passed","Mon Apr 22 08:39:44 GMT 2024","Mon Apr 22 08:39:47 GMT 2024","2937","","","","ValuesTest","ExceedingPermissibleValuesTest","ExceedingPermissibleValuesTest","Проверка на граничные значения
+"
+"passed","Mon Apr 22 08:39:43 GMT 2024","Mon Apr 22 08:39:46 GMT 2024","2222","","","","LoginTest","LoginWithStandardUser","LoginWithStandardUser","Проверка перехода на главную страницу после логина с корректными данными
+"
+"passed","Mon Apr 22 08:39:37 GMT 2024","Mon Apr 22 08:39:46 GMT 2024","9661","","","","DeleteProjectTest","TestDeleteProject","TestDeleteProject","Проверка успешного удаления созданного проекта
+"
+"passed","Mon Apr 22 08:39:37 GMT 2024","Mon Apr 22 08:39:41 GMT 2024","4805","","","","DialogWindowTest","TestDialogWindow","TestDialogWindow","Проверка отображения диалогового окна
+"
+"passed","Mon Apr 22 08:39:37 GMT 2024","Mon Apr 22 08:39:45 GMT 2024","8841","","","","AddProjectTest","TestAddProject","TestAddProject","Проверка успешного создания проекта
+"
+"passed","Mon Apr 22 08:39:37 GMT 2024","Mon Apr 22 08:39:42 GMT 2024","4933","","","","FileUploadTest","TestFileUpload","TestFileUpload","Проверка на загрузку файла
+"
+"passed","Mon Apr 22 08:39:47 GMT 2024","Mon Apr 22 08:39:47 GMT 2024","108","","","","PostTest","CheckSuccessfulResponse_WhenPostRunsComplete","CheckSuccessfulResponse_WhenPostRunsComplete","Проверка успешного завершения запуска автоматизации в целевом проекте
+"
